@@ -78,7 +78,6 @@ module.exports = (grunt)->
     done = do @async
     options = @options
       force:force
-      enableHTTP:false
       paths:null
       filter: (property, size) -> size
     async.forEach @filesSrc,

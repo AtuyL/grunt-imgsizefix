@@ -84,7 +84,6 @@ module.exports = function(grunt) {
     done = this.async();
     options = this.options({
       force: force,
-      enableHTTP: false,
       paths: null,
       filter: function(property, size) {
         return size;
