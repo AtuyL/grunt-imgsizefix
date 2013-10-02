@@ -63,6 +63,7 @@ module.exports = (grunt)->
       # console.log tag,'-------->',embedded
       html = html.replace tag,embedded
     fs.writeFileSync filepath,html
+    next()
 
   grunt.registerMultiTask 'imgsizefix',"Embed the IMG tag's size-attributes from real image size.",->
     done = do @async

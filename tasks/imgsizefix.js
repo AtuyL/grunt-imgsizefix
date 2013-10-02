@@ -71,7 +71,8 @@ module.exports = function(grunt) {
       embedded = embedded.replace(REG.height, "$1height=$2" + height + "$2");
       html = html.replace(tag, embedded);
     }
-    return fs.writeFileSync(filepath, html);
+    fs.writeFileSync(filepath, html);
+    return next();
   };
   return grunt.registerMultiTask('imgsizefix', "Embed the IMG tag's size-attributes from real image size.", function() {
     var done, options;
