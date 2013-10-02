@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     abspath: /^(https?:\/)?\//im
   };
   imgsizefix = function(filepath, options, next) {
-    var dirname, embedded, from, height, html, image, imgPath, index, length, pair, parser, paths, src, srcMatch, tag, tagMatch, to, width, _i, _len, _ref, _ref1;
+    var dirname, embedded, found, from, height, html, image, imgPath, index, length, pair, parser, paths, src, srcMatch, tag, tagMatch, to, width, _i, _len, _ref, _ref1;
     if (!grunt.file.exists(filepath)) {
       return next(false);
     }
@@ -55,16 +55,21 @@ module.exports = function(grunt) {
           imgPath = path.resolve(dirname, src);
         }
         parser = Parser();
-        image = fs.existsSync(imgPath) ? fs.readFileSync(imgPath) : console.log('not found:', imgPath);
+        found = fs.existsSync(imgPath);
+        image = found ? fs.readFileSync(imgPath) : console.log('not found:', imgPath);
         if (image) {
           switch (parser.parse(image)) {
             case Parser.EOF || Parser.INVALID:
               console.log('invalid:', imgPath);
-              break;
+              return;
             case Parser.DONE:
               _ref1 = parser.getResult(), width = _ref1.width, height = _ref1.height;
           }
         }
+      }
+      if (found) {
+        width = options.filter("width", width);
+        height = options.filter("height", height);
       }
       embedded = tag;
       embedded = embedded.replace(REG.width, "$1width=$2" + width + "$2");
@@ -80,7 +85,10 @@ module.exports = function(grunt) {
     options = this.options({
       force: force,
       enableHTTP: false,
-      paths: null
+      paths: null,
+      filter: function(property, size) {
+        return size;
+      }
     });
     return async.forEach(this.filesSrc, function(filepath, next) {
       return imgsizefix(filepath, options, next);

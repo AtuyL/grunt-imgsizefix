@@ -52,10 +52,19 @@ module.exports = (grunt)->
           imgPath = path.resolve dirname,src
 
         parser = do Parser
-        image = if fs.existsSync imgPath then fs.readFileSync imgPath else console.log 'not found:',imgPath
+
+        found = fs.existsSync imgPath
+
+        image = if found then fs.readFileSync imgPath else console.log 'not found:',imgPath
         if image then switch parser.parse image
-          when Parser.EOF or Parser.INVALID then console.log 'invalid:',imgPath
+          when Parser.EOF or Parser.INVALID 
+            console.log 'invalid:',imgPath
+            return
           when Parser.DONE then {width:width,height:height} = do parser.getResult
+
+      if found
+        width = options.filter("width", width)
+        height = options.filter("height", height)
 
       embedded = tag
       embedded = embedded.replace REG.width,"$1width=$2#{width}$2"
@@ -71,6 +80,7 @@ module.exports = (grunt)->
       force:force
       enableHTTP:false
       paths:null
+      filter: (property, size) -> size
     async.forEach @filesSrc,
       (filepath,next)-> imgsizefix filepath,options,next
       (error)-> done not error
