@@ -16,7 +16,7 @@ module.exports = (grunt)->
 		imgsizefix:
 			options:
 				paths:
-					'test/www':'/'
+					'test/www':['/','http://www.example.com']
 					'test/www/child/':'/child/'
 			short: ['test/**/*.html']
 			long: src: ['test/**/*.html']
