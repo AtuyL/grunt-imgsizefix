@@ -9,6 +9,7 @@ module.exports = (grunt)->
   REG =
     tag:/<\s*img[^>]*\s+(width|height)(\s*)=(\s*)["']\$["'][^>]*>/im
     src:/\s+src\s*=\s*["']([^"']+)["']/im
+    lazy:/\s+data-lazy\s*=\s*["']([^"']+)["']/im
     width:/(\s+)width\s*=\s*(["'])\$["']/im
     height:/(\s+)height\s*=\s*(["'])\$["']/im
     abspath:/^(https?:\/)?\//im
@@ -34,7 +35,7 @@ module.exports = (grunt)->
       tag = tagMatch[0]
       index = tagMatch.index
       length = tag.length
-      srcMatch = tag.match REG.src
+      srcMatch = tag.match REG.lazy || tag.match REG.src
       width = ''
       height = ''
       if srcMatch
