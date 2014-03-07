@@ -1,6 +1,6 @@
 {
   "name": "grunt-imgsizefix",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Embed the IMG tag's size-attributes from real image size.",
   "main": "Gruntfile.coffee",
   "scripts": {
