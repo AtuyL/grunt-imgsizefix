@@ -35,7 +35,7 @@ module.exports = (grunt)->
       tag = tagMatch[0]
       index = tagMatch.index
       length = tag.length
-      srcMatch = tag.match REG.lazy || tag.match REG.src
+      srcMatch = tag.match(REG.lazy) || tag.match(REG.src)
       width = ''
       height = ''
       if srcMatch
