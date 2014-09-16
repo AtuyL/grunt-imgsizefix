@@ -1,8 +1,8 @@
 {
   "name": "grunt-imgsizefix",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Embed the IMG tag's size-attributes from real image size.",
-  "main": "Gruntfile.coffee",
+  "main": "Gruntfile.js",
   "scripts": {
     "test": "grunt"
   },
@@ -16,7 +16,8 @@
     "url": "https://github.com/AtuyL/grunt-imgsizefix/issues"
   },
   "dependencies": {
-    "imagesize": "~1.0.0"
+    "async": "^0.9.0",
+    "imgsizefix": "git://github.com/AtuyL/imgsizefix.git#5eaeac981caa6435f35523b28e5c92d5746dffcb"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

@@ -1,1 +1,16 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>imgsizefix test</title></head><body><img src="./img256px.png"><img src="./img256px.png" width="256"><img src="./img256px.png" height="256"><img src="./img256px.png" width="256" height="256"><img width="" height=""><img src="./img256px-hogehoge.png" width="" height=""><img src="http://www.example.com/img256px-hogehoge.png" width="" height=""></body></html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>imgsizefix test</title>
+  </head>
+  <body>
+    <p><img src="./img256px.png" width="256" height="256"></p>
+    <p><img src="./img256px.png" width="256" height="256"></p>
+    <p><img src="./img256px.png" height="256" width="256"></p>
+    <p><img src="./img256px.png" width="256" height="256"></p>
+    <p><img width="$" height="$"></p>
+    <p><img src="./img256px-hogehoge.png" width="auto" height="auto"></p>
+    <p><img src="http://www.example.com/img256px-hogehoge.png" width="auto" height="auto"></p>
+  </body>
+</html>
